@@ -14,10 +14,38 @@ package april2020;
 import java.util.*;
 
 public class Day1 {
-	
-	public static void main(String[] args) {
-		problem1();
-	}
+	/************************************************************************
+	 * Solution 1:
+	 * 
+	 * First we split up the two different types of logs. To figure out
+	 * which were integers, I tested the first entry after the identifier by
+	 * using a try/catch to see if I could parse the string into an integer.
+	 * If it passed, it was an integer. If not, then the catch knew it was a
+	 * word. Not sure if that's the best way to do that, but it works.
+	 * 
+	 * Next we have to sort the logs. The words are a bit more complex, since
+	 * we needed them sorted alphabetically ignoring the identifier UNLESS
+	 * they're a tie, then we sort by the identifier.
+	 * 
+	 * To do this we needed the words log actually a list of string arrays,
+	 * splitting up the identifier and the words into their own indexes. This
+	 * makes it easier to sort them without worrying about losing their place.
+	 * 
+	 * After splitting them, we need to sort them. Knowledge of how to use a
+	 * comparator is helpful for this. It was new to me but it's pretty easy
+	 * to understand. Basically you can create your own method for the compare
+	 * method used by the Collections.sort method by attaching a new comparator
+	 * to it and defining its compare method. When you understand that, you can
+	 * just use the built-in String.compareTo methods to make it sort correctly.
+	 * Have it check for word ties first, if there is then you sort by the ID.
+	 * Otherwise, you just sort alphabetically.
+	 * 
+	 * Once the sorting is done, you put the word logs back together, add those
+	 * to the new logs, and then append the integer logs. Return the new logs
+	 * and you're all done!
+	 * 
+	 * Time complexity: O(N*log(N))
+	 ************************************************************************/
 	
 	public static List<String> logSorting(int numLines, List<String> loglines) {
 		// Initialize empty lists for newLog and sorting
@@ -65,8 +93,12 @@ public class Day1 {
 		return newLog;
 	}
 	
+	// Run problem tests
+	public static void main(String[] args) {
+		problem1();
+	}
+	
 	public static void problem1() {
-		// Run problem tests
 		System.out.println("Test 1:");
 		List<String> test1input = new ArrayList<String>(Arrays.asList(
 				"a1 9 2 3 1",
