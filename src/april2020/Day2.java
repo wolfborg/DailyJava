@@ -21,7 +21,7 @@ package april2020;
 
 public class Day2 {
 	/************************************************************************
-	 * Solution 1:
+	 * Solution:
 	 * 
 	 * Pretty simple, we set a while loop to keep increasing the population
 	 * annually with the parameters given until the targer is reached and we
