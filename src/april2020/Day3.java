@@ -28,20 +28,42 @@ public class Day3 {
 	 * Time complexity: 
 	 ************************************************************************/
 	
-	/**
-	 * Definition for singly-linked list.
-	 * public class ListNode {
-	 *     int val;
-	 *     ListNode next;
-	 *     ListNode(int x) { val = x; }
-	 * }
-	 */
-	
 	public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+		ListNode sumHead = new ListNode(0);
+		ListNode sum = sumHead;
 		
-		ListNode sum = makeNode(new int[] { 1, 2, 3 });
+		int[] n1 = getNodes(l1);
+		int[] n2 = getNodes(l2);
+		boolean carry = false;
 		
-		return sum;
+		for (int i=0; i<n1.length; i++) {
+			int v = n1[i] + n2[i];
+			
+			if (carry) { v++; carry = false; }
+			if (v >= 10) { v = v-10; carry = true; }
+			
+			sum.val = v;
+			if (i<n1.length-1) {
+				sum.next = new ListNode(n1[i+1] + n2[i+1]);
+				sum = sum.next;
+			}
+		}
+		
+		if (carry)
+			sum.next = new ListNode(1);
+		
+		return sumHead;
+	}
+	
+	public static int[] getNodes(ListNode node) {
+		String[] s = node.toString().split(" ");
+		int[] nodes = new int[s.length];
+		
+		for (int i=0; i<s.length; i++) {
+			nodes[i] = Integer.parseInt(s[i]);
+		}
+		
+		return nodes;
 	}
 	
 	public static ListNode makeNode(int[] nodes) {
@@ -62,9 +84,21 @@ public class Day3 {
 	}
 	
 	public static void problemTests() {
-		ListNode l1 = makeNode(new int[] { 2,4,3 });
-		ListNode l2 = makeNode(new int[] { 5,6,4 });
-		ListNode ex = makeNode(new int[] { 7,0,8 });
+		ListNode l1, l2, ex = null;
+		
+		l1 = makeNode(new int[] { 2,4,3 });
+		l2 = makeNode(new int[] { 5,6,4 });
+		ex = makeNode(new int[] { 7,0,8 });
+		test(addTwoNumbers(l1, l2), ex);
+		
+		l1 = makeNode(new int[] { 4,2,8,9,1 });
+		l2 = makeNode(new int[] { 5,6,4,3,4 });
+		ex = makeNode(new int[] { 9,8,2,3,6 });
+		test(addTwoNumbers(l1, l2), ex);
+		
+		l1 = makeNode(new int[] { 9,9,9,9,9,9 });
+		l2 = makeNode(new int[] { 0,9,9,9,9,9 });
+		ex = makeNode(new int[] { 9,8,9,9,9,9,1 });
 		test(addTwoNumbers(l1, l2), ex);
 	}
 	

@@ -14,6 +14,10 @@ public class ListNode {
 			node = node.next;
 		}
 		
-		return s;
+		return s.trim();
+	}
+	
+	public boolean equals(ListNode n) {
+		return this.toString().equals(n.toString());
 	}
 }
