@@ -34,7 +34,7 @@ public class Day2 {
 	 * 
 	 * There is a problem with it though where if the population doesn't grow
 	 * then you end up in an infinite loop. So I've added a quick check to
-	 * prevent that.
+	 * prevent that. If we never reach the goal, we return -1.
 	 * 
 	 * Time complexity: O(1)
 	 ************************************************************************/
