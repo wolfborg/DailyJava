@@ -34,17 +34,32 @@ public class Day3 {
 		
 		int[] n1 = getNodes(l1);
 		int[] n2 = getNodes(l2);
+		
+		int length = n1.length;
+		if (n2.length > length)
+			length = n2.length;
+		
 		boolean carry = false;
 		
-		for (int i=0; i<n1.length; i++) {
-			int v = n1[i] + n2[i];
+		for (int i=0; i<length; i++) {
+			int num1, num2 = -1;
+			try { num1 = n1[i]; }
+			catch (ArrayIndexOutOfBoundsException e) { num1 = 0; }
+			try { num2 = n2[i]; }
+			catch (ArrayIndexOutOfBoundsException e) { num2 = 0; }
+			
+			int v = num1 + num2;
 			
 			if (carry) { v++; carry = false; }
 			if (v >= 10) { v = v-10; carry = true; }
 			
 			sum.val = v;
 			if (i<n1.length-1) {
-				sum.next = new ListNode(n1[i+1] + n2[i+1]);
+				try { num1 = n1[i+1]; }
+				catch (ArrayIndexOutOfBoundsException e) { num1 = 0; }
+				try { num2 = n2[i+1]; }
+				catch (ArrayIndexOutOfBoundsException e) { num2 = 0; }
+				sum.next = new ListNode(num1 + num2);
 				sum = sum.next;
 			}
 		}
@@ -99,6 +114,11 @@ public class Day3 {
 		l1 = makeNode(new int[] { 9,9,9,9,9,9 });
 		l2 = makeNode(new int[] { 0,9,9,9,9,9 });
 		ex = makeNode(new int[] { 9,8,9,9,9,9,1 });
+		test(addTwoNumbers(l1, l2), ex);
+		
+		l1 = makeNode(new int[] { 0 });
+		l2 = makeNode(new int[] { 7,3 });
+		ex = makeNode(new int[] { 7,3 });
 		test(addTwoNumbers(l1, l2), ex);
 	}
 	
