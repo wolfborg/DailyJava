@@ -10,7 +10,7 @@ public class ListNode {
 		
 		ListNode node = this;
 		while (node != null) {
-			s += node.next + " ";
+			s += node.val + " ";
 			node = node.next;
 		}
 		

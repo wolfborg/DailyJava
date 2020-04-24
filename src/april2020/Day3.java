@@ -48,18 +48,17 @@ public class Day3 {
 		ListNode head = null;
 		ListNode node = null;
 		
-		//for (int i=0; i<nodes.length; i++) {
 		for (int i : nodes) {
 			if (head == null) {
 				head = new ListNode(i);
 				node = head;
+				continue;
 			}
 			node.next = new ListNode(i);
 			node = node.next;
-			//head = node;
 		}
 		
-		return node;
+		return head;
 	}
 	
 	public static void problemTests() {
