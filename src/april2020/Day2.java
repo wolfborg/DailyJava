@@ -41,19 +41,16 @@ public class Day2 {
 	
 	public static int populationGrowth(int p0, double percent, int aug, int p) {
 		int n = 0;
-		int p1 = 0;
+		int p1 = p0;
 		
 		System.out.println("Initial: " + p0);
 		System.out.println("Target:  " + p);
 		System.out.println();
 		
 		// Increase population until target
-		while (p0 < p) {
-			// Population increase calculation
-			p1 = (int) (p0 + (p0 * (percent/100)) + aug);
-			// Check for decrease
-			if (p0 > p1) { return -1; }
-			p0 = p1; // Apply increase
+		while (p1 < p) {
+			p1 += p1 * (percent/100) + aug; // Population increase
+			if (p0 > p1) { return -1; } // Check decrease
 			n++; // Increment year count
 			//System.out.println("Growth " + n + ": " + p0);
 		}
