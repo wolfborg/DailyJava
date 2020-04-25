@@ -79,33 +79,60 @@ public class Day3 {
 		return head;
 	}
 	
+	public static boolean additionTest(String in1, String in2, String exp) {
+		return test(
+			addTwoNumbers(
+				makeNode(strToIntArr(in1)),
+				makeNode(strToIntArr(in2))),
+			makeNode(strToIntArr(exp))
+		);
+	}
+	
+	public static int[] strToIntArr(String in) {
+		String[] s = in.split(",");
+		int[] out = new int[s.length];
+		for (int i=0; i<s.length; i++) {
+			out[i] = Integer.parseInt(s[i]);
+		}
+		return out;
+	}
+	
 	public static void problemTests() {
-		ListNode l1, l2, ex = null;
+		additionTest(
+			"2,4,3",
+			"5,6,4",
+			"7,0,8"
+		);
 		
-		l1 = makeNode(new int[] { 2,4,3 });
-		l2 = makeNode(new int[] { 5,6,4 });
-		ex = makeNode(new int[] { 7,0,8 });
-		test(addTwoNumbers(l1, l2), ex);
+		additionTest(
+			"4,2,8,9,1",
+			"5,6,4,3,4",
+			"9,8,2,3,6"
+		);
 		
-		l1 = makeNode(new int[] { 4,2,8,9,1 });
-		l2 = makeNode(new int[] { 5,6,4,3,4 });
-		ex = makeNode(new int[] { 9,8,2,3,6 });
-		test(addTwoNumbers(l1, l2), ex);
+		additionTest(
+			"9,9,9,9,9,9",
+			"0,9,9,9,9,9",
+			"9,8,9,9,9,9,1"
+		);
 		
-		l1 = makeNode(new int[] { 9,9,9,9,9,9 });
-		l2 = makeNode(new int[] { 0,9,9,9,9,9 });
-		ex = makeNode(new int[] { 9,8,9,9,9,9,1 });
-		test(addTwoNumbers(l1, l2), ex);
+		additionTest(
+			"0",
+			"7,3",
+			"7,3"
+		);
 		
-		l1 = makeNode(new int[] { 0 });
-		l2 = makeNode(new int[] { 7,3 });
-		ex = makeNode(new int[] { 7,3 });
-		test(addTwoNumbers(l1, l2), ex);
+		additionTest(
+			"0,3",
+			"7,3,4,5,6",
+			"7,6,4,5,6"
+		);
 		
-		l1 = makeNode(new int[] { 0,3 });
-		l2 = makeNode(new int[] { 7,3,4,5,6 });
-		ex = makeNode(new int[] { 7,6,4,5,6 });
-		test(addTwoNumbers(l1, l2), ex);
+		additionTest(
+			"9,8",
+			"1",
+			"0,9"
+		);
 	}
 	
 	// Run problem tests
@@ -115,11 +142,13 @@ public class Day3 {
 		problemTests();
 	}
 		
-	public static void test(ListNode result, ListNode expect) {
-		if (result.equals(expect)) { System.out.println("Correct"); }
+	public static boolean test(ListNode output, ListNode expect) {
+		boolean result = output.equals(expect);
+		if (result) { System.out.println("Correct"); }
 		else { System.out.println("Incorrect"); }
-		System.out.println("Output: " + result);
+		System.out.println("Output: " + output);
 		System.out.println("Expect: " + expect);
 		System.out.println("\n===========================\n");
+		return result;
 	}
 }
