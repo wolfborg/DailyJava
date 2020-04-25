@@ -47,7 +47,9 @@ public class Day3 {
 			
 			if (l1.next != null || l2.next != null) {
 				if (l1.next != null) l1 = l1.next;
+				else { l1 = null; }
 				if (l2.next != null) l2 = l2.next;
+				else { l2 = null; }
 				sum.next = new ListNode(0);
 			} else {
 				l1 = null; l2 = null;
