@@ -32,53 +32,34 @@ public class Day3 {
 		ListNode sumHead = new ListNode(0);
 		ListNode sum = sumHead;
 		
-		int[] n1 = getNodes(l1);
-		int[] n2 = getNodes(l2);
-		
-		int length = n1.length;
-		if (n2.length > length)
-			length = n2.length;
-		
 		boolean carry = false;
 		
-		for (int i=0; i<length; i++) {
-			int num1, num2 = -1;
-			try { num1 = n1[i]; }
-			catch (ArrayIndexOutOfBoundsException e) { num1 = 0; }
-			try { num2 = n2[i]; }
-			catch (ArrayIndexOutOfBoundsException e) { num2 = 0; }
+		while (l1 != null || l2 != null) {
+			if (l1 == null) { l1 = new ListNode(0); }
+			else if (l2 == null) { l2 = new ListNode(0); }
 			
-			int v = num1 + num2;
+			int v = l1.val + l2.val;
 			
 			if (carry) { v++; carry = false; }
 			if (v >= 10) { v = v-10; carry = true; }
 			
 			sum.val = v;
-			if (i<n1.length-1) {
-				try { num1 = n1[i+1]; }
-				catch (ArrayIndexOutOfBoundsException e) { num1 = 0; }
-				try { num2 = n2[i+1]; }
-				catch (ArrayIndexOutOfBoundsException e) { num2 = 0; }
-				sum.next = new ListNode(num1 + num2);
-				sum = sum.next;
+			
+			if (l1.next != null || l2.next != null) {
+				if (l1.next != null) l1 = l1.next;
+				if (l2.next != null) l2 = l2.next;
+				sum.next = new ListNode(0);
+			} else {
+				l1 = null; l2 = null;
+				
+				if (carry)
+					sum.next = new ListNode(1);
 			}
+			
+			sum = sum.next;
 		}
-		
-		if (carry)
-			sum.next = new ListNode(1);
 		
 		return sumHead;
-	}
-	
-	public static int[] getNodes(ListNode node) {
-		String[] s = node.toString().split(" ");
-		int[] nodes = new int[s.length];
-		
-		for (int i=0; i<s.length; i++) {
-			nodes[i] = Integer.parseInt(s[i]);
-		}
-		
-		return nodes;
 	}
 	
 	public static ListNode makeNode(int[] nodes) {
@@ -119,6 +100,11 @@ public class Day3 {
 		l1 = makeNode(new int[] { 0 });
 		l2 = makeNode(new int[] { 7,3 });
 		ex = makeNode(new int[] { 7,3 });
+		test(addTwoNumbers(l1, l2), ex);
+		
+		l1 = makeNode(new int[] { 0,3 });
+		l2 = makeNode(new int[] { 7,3,4,5,6 });
+		ex = makeNode(new int[] { 7,6,4,5,6 });
 		test(addTwoNumbers(l1, l2), ex);
 	}
 	
