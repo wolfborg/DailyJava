@@ -23,6 +23,7 @@ public class Day5 {
 	/************************************************************************
 	 * My Solution:
 	 * 
+	 * If n is already less than 10, return zero. Otherwise, continue.
 	 * Convert the long to a string and initialize a m long with n and start
 	 * a count at zero. Loop until the m value is less than ten. In each loop,
 	 * we convert the current long n into a string and set m to one. Iterate
@@ -53,18 +54,50 @@ public class Day5 {
 	/************************************************************************
 	 * Online Solution:
 	 * 
+	 * This solution uses recursion to simplify the work.
 	 * 
+	 * Breakdown:
+	 * 1. Set long m to 1 and r to n
+	 * 2. If r divided by 10 is 0, return 0
+	 * 3. Start for loop:
+	 * 		- Starts with r = n
+	 * 		- Loops until r = 0
+	 * 		- Each loop sets r = r / 10
+	 * 4. Loop sets m = (m * r) % 10
+	 * 5. After loop, return persistence(m) + 1
 	 * 
-	 * Time complexity: 
+	 * Explained:
+	 * This uses modulo and division to shift through the digits of the long
+	 * variables. r is used to determine the digit shift while m is used to
+	 * multiply the new digits into it. Dividing by ten can remove the last
+	 * digit of a long. Modulo by ten can return the second digit without
+	 * shifting the entire long.
+	 * 
+	 * The recusrion is used to keep count of the number of times we multiply,
+	 * because in the end only the ones that are returned with each recursion
+	 * get added into the final return. This is because the final m will always
+	 * return zero once we finally reach the point where r is zero.
+	 * 
+	 * Time complexity: O(N)
 	 ************************************************************************/
 	public static int persistence2(long n) {
-		return -1;
+		long m = 1, r = n;
+
+	    if (r / 10 == 0)
+	      return 0;
+	
+	    for (r = n; r != 0; r /= 10)
+	      m *= r % 10;
+	
+	    return persistence2(m) + 1;
 	}
 	
 	public static void problemTests() {
 		test(persistence(39), 3);
 		test(persistence(999), 4);
 		test(persistence(4), 0);
+		test(persistence(25), 2);
+		test(persistence(10), 1);
 	}
 	
 	public static boolean test(int output, int expect) {
