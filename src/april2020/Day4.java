@@ -1,7 +1,7 @@
 package april2020;
 
 /*******************************************************************
- * Problem: 
+ * Problem: Isograms
  * Date: April 25th, 2020
  * 
  * An isogram is a word that has no repeating letters, consecutive
@@ -16,7 +16,8 @@ package april2020;
  * 
  *******************************************************************/
 
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Day4 {
 	/************************************************************************
