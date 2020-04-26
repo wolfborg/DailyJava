@@ -34,11 +34,13 @@ public class Day5 {
 	 ************************************************************************/
 	
 	public static int persistence(long n) {
+		if (n < 10) { return 0; }
+		
 		String s = "";
 		long m = n;
 		int count = 0;
 		
-		while (m > 10) {
+		while (m >= 10) {
 			s = Long.toString(n); m = 1;
 			for (char c : s.toCharArray())
 				m *= Integer.parseInt(Character.toString(c));
