@@ -23,13 +23,29 @@ public class Day5 {
 	/************************************************************************
 	 * My Solution:
 	 * 
+	 * Convert the long to a string and initialize a m long with n and start
+	 * a count at zero. Loop until the m value is less than ten. In each loop,
+	 * we convert the current long n into a string and set m to one. Iterate
+	 * over each char of the string, convert them to integers, and multiply
+	 * them into m. Set n to m. Increment count at the end of each loop.
+	 * Return the final count.
 	 * 
-	 * 
-	 * Time complexity: 
+	 * Time complexity: O(N)
 	 ************************************************************************/
 	
 	public static int persistence(long n) {
-		return -1;
+		String s = "";
+		long m = n;
+		int count = 0;
+		
+		while (m > 10) {
+			s = Long.toString(n); m = 1;
+			for (char c : s.toCharArray())
+				m *= Integer.parseInt(Character.toString(c));
+			n = m; count++;
+		}
+		
+		return count;
 	}
 	
 	/************************************************************************
