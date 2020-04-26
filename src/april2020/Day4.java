@@ -16,17 +16,31 @@ package april2020;
  * 
  *******************************************************************/
 
+import java.util.*;
+
 public class Day4 {
 	/************************************************************************
 	 * Solution:
 	 * 
+	 * Convert the string to lowercase so we ignore cases, then make a new
+	 * list of characters. Iterate over the string characters, checking if
+	 * we already have it. If we do, return false. If we don't, add it to
+	 * the list. If we make it throught the whole thing without a duplicate,
+	 * we return true.
 	 * 
-	 * 
-	 * Time complexity: 
+	 * Time complexity: O(N)
 	 ************************************************************************/
 	
 	public static boolean isogram(String str) {
-		return false;
+		str = str.toLowerCase();
+		List<Character> check = new ArrayList<Character>();
+		
+		for (char c : str.toCharArray()) {
+			if (check.contains(c)) { return false; }
+			else { check.add(c); }
+		}
+		
+		return true;
 	}
 	
 	public static void problemTests() {
