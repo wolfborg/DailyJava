@@ -20,7 +20,7 @@ import java.util.*;
 
 public class Day4 {
 	/************************************************************************
-	 * Solution:
+	 * My Solution:
 	 * 
 	 * Convert the string to lowercase so we ignore cases, then make a new
 	 * list of characters. Iterate over the string characters, checking if
@@ -41,6 +41,34 @@ public class Day4 {
 		}
 		
 		return true;
+	}
+	
+	
+	/************************************************************************
+	 * Online Solution:
+	 * 
+	 * This was the cleanest and simplest solution I found online after I
+	 * submitted my solution. I'm including it here because I want to study
+	 * it and learn from it for future implementation.
+	 * 
+	 * Here's a breakdown of what's happening here:
+	 * String.length() - returns length of string
+	 * String.toLowerCase() - helps us ignore cases
+	 * String.chars() - returns IntStream of zero-extending chars
+	 * IntStream.distinct() - returns IntStream of distinct elements
+	 * IntStream.count() - returns count of IntStream elements
+	 * 
+	 * To put it all together:
+	 * Ignore the case, split it into chars as an IntStream, use IntStream's
+	 * distinct function to remove all duplicate chars, and compare both the
+	 * lengths of the original string and the length of the distrinct stream.
+	 * Makes sense because if there were any duplicates, the lengths wouldn't
+	 * be the same. Pretty clever!
+	 * 
+	 * Time complexity: O(N)
+	 ************************************************************************/
+	public static boolean isogram2(String str) {
+		return str.length() == str.toLowerCase().chars().distinct().count();
 	}
 	
 	public static void problemTests() {
