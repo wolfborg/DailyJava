@@ -23,9 +23,23 @@ public class Day3 {
 	/************************************************************************
 	 * Solution:
 	 * 
+	 * You might think (like I did at first) that really you could convert
+	 * the ListNodes to their full number form, add them, and return their
+	 * sum converted back to a listNode. Even though that might solve the
+	 * problem, it defeats the whole point of the excersize and as such there
+	 * are test cases that can break that. The test cases being that this
+	 * should work for adding really large numbers. Numbers that, if you try
+	 * to convert them, are way too big.
 	 * 
+	 * The real solution is that we have to run through the process that you
+	 * normally would when you're adding two numbers. This involves adding
+	 * the integers at the end and moving forward, putting their sum in a
+	 * new ListNode and accounting for carrying a one to the next addition.
+	 * Most of the problems I had with this involved null exceptions with
+	 * numbers that were bigger than the other one. Confused me for awhile,
+	 * but now it all works.
 	 * 
-	 * Time complexity: 
+	 * Time complexity: O(N)
 	 ************************************************************************/
 	
 	public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
@@ -134,6 +148,12 @@ public class Day3 {
 			"9,8",
 			"1",
 			"0,9"
+		);
+		
+		additionTest(
+			"4,2,8,9,1,3,3,3,3,3,3,3,3,3,3,3,3,3",
+			"5,6,4,3,4,3,3,3,3,3,3,3,3,3,3,3,3,3",
+			"9,8,2,3,6,6,6,6,6,6,6,6,6,6,6,6,6,6"
 		);
 	}
 	
