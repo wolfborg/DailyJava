@@ -22,6 +22,7 @@ package april2020;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class Day6 {
 	/************************************************************************
@@ -59,26 +60,45 @@ public class Day6 {
 	}
 	
 	/************************************************************************
-	 * Online Solution:
+	 * Online Solution
 	 * 
-	 * 
+	 * New Stuff:
+	 * Arrays.stream() - returns a stream from a given array
+	 * Stream.sorted() - returns sorted stream using comparator
+	 * Comparator.comparing() - returns a comparator extracted from a sort key
+	 * Integer.valueOf() - returns integer value representing a string
+	 * String.replaceAll() - replaces all of a substring with a new substring
+	 * Stream.reduce() - reduces the elements of the stream
+	 * Optional.get() - returns a value if it's present
 	 * 
 	 * Breakdown:
-	 * 
+	 * 1. Split words into string array.
+	 * 2. Convert string array into a stream.
+	 * 3. Run a sort function on the stream.
+	 * 4. Use a comparing function to sort stream.
+	 * 		- Remove everything but digits from the words.
+	 * 		- Sort by the integer value of the leftover word.
+	 * 5. Reduce elements as a means of joining the stream again.
+	 * 6. Get the final String and return it.
 	 * 
 	 * Explained:
+	 * This solution seems simple and clean, but there's a couple small issues
+	 * with it. The replaceAll happens during the sorting algorithm multiple
+	 * times, making it really inefficient. And instead of reduce, join should
+	 * be used instead.
 	 * 
-	 * 
-	 * Time complexity: 
+	 * Time complexity: O(N*log(N))
 	 ************************************************************************/
 	public static String order2(String words) {
-	    return "";
-	}
+	    return Arrays.stream(words.split(" "))
+	      .sorted(Comparator.comparing(s -> Integer.valueOf(s.replaceAll("\\D", ""))))
+	      .reduce((a, b) -> a + " " + b).get();
+	  }
 	
 	public static void problemTests() {
-		test(order("is2 Thi1s T4est 3a"), "Thi1s is2 3a T4est");
-		test(order("4of Fo1r pe6ople g3ood th5e the2"), "Fo1r the2 g3ood 4of th5e pe6ople");
-		test(order(""), "");
+		test(order2("is2 Thi1s T4est 3a"), "Thi1s is2 3a T4est");
+		test(order2("4of Fo1r pe6ople g3ood th5e the2"), "Fo1r the2 g3ood 4of th5e pe6ople");
+		test(order2(""), "");
 	}
 	
 	public static boolean test(Object output, Object expect) {
