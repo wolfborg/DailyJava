@@ -19,21 +19,43 @@ package april2020;
  * "" --> ""
  *******************************************************************/
 
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Day6 {
 	/************************************************************************
-	 * My Solution:
+	 * My Solution
 	 * 
-	 * Breakdown:
+	 * 1. If words is empty, return it
+	 * 2. Split up the words by spaces into an list
+	 * 3. For loop:
+	 * 		- Starts with i=0 and n=0
+	 * 		- Loops through the wordsList
+	 * 		- Each loop increments i by 1
+	 * 4. Loop goes until it finds the current number (n) in a word.
+	 * 5. When it finds the word, appends it and remove from wordsList
+	 * 6. Reset i and increment n
+	 * 7. Continue until wordsList is empty.
+	 * 8. Return ordered String.
 	 * 
-	 * 
-	 * Time complexity: 
+	 * Time complexity: O(N^2)
 	 ************************************************************************/
 	public static String order(String words) {
-		String order = "";
+		if (words == "") { return words; }
 		
+		String ordered = "";
+		List<String> wordsList = new ArrayList<String>(Arrays.asList(words.split(" ")));
+		for (int i=0, n=1; i<wordsList.size(); i++) {
+			String word = wordsList.get(i);
+			if (word.contains(Integer.toString(n))) {
+				ordered += word + " ";
+				wordsList.remove(i);
+				i=-1; n++;
+			}
+		}
 		
-		
-		return order;
+		return ordered.trim();
 	}
 	
 	/************************************************************************
