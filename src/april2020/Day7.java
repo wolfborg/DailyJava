@@ -33,7 +33,7 @@ public class Day7 {
 	public static double findUniq(double[] arr) {
 		//System.out.println(Arrays.toString(arr));
 		double[] d = Arrays.stream(arr).distinct().toArray();
-		return (arr[0] == arr[1] || arr[0] == arr[2]) ? d[1] :  d[0];
+		return (arr[0] == arr[1] || arr[0] == arr[2]) ? d[1] : d[0];
 	}
 	
 	/************************************************************************
