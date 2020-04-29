@@ -38,14 +38,9 @@ public class Day8 {
 	 * Time complexity: O(N)
 	 ************************************************************************/
 	public static String solution(int n) {
-		if (n == 0) return "0.00";
-		
-		double num = 1;
-		for (int x=4; n > 1; n--) {
-			num += 1.0/x;
-			x += 3;
-		}
-		
+		double num = 0.0;
+		for (int i=0; i<n; i++)
+			num += 1.0 / (1+i*3);
 		return String.format("%.2f", num);
 	}
 	
@@ -77,10 +72,10 @@ public class Day8 {
 	}
 	
 	public static void problemTests() {
-		Test.test(solution2(1), "1.00");
-		Test.test(solution2(2), "1.25");
-		Test.test(solution2(5), "1.57");
-		Test.test(solution2(0), "0.00");
+		Test.test(solution(1), "1.00");
+		Test.test(solution(2), "1.25");
+		Test.test(solution(5), "1.57");
+		Test.test(solution(0), "0.00");
 	}
 	
 	

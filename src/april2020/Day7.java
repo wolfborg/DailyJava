@@ -56,10 +56,10 @@ public class Day7 {
 	}
 	
 	public static void problemTests() {
-		test(findUniq2(new double[] { 1, 1, 1, 2, 1, 1 }), 2.0);
-		test(findUniq2(new double[] { 0, 0, 0.55, 0, 0 }), 0.55);
-		test(findUniq2(new double[] { 0, 1, 1, 1, 1, 1, 1, 1 }), 0.0);
-		test(findUniq2(new double[] { 0, 1, 0 }), 1.0);
+		test(findUniq(new double[] { 1, 1, 1, 2, 1, 1 }), 2.0);
+		test(findUniq(new double[] { 0, 0, 0.55, 0, 0 }), 0.55);
+		test(findUniq(new double[] { 0, 1, 1, 1, 1, 1, 1, 1 }), 0.0);
+		test(findUniq(new double[] { 0, 1, 0 }), 1.0);
 	}
 	
 	public static boolean test(Object output, Object expect) {

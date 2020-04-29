@@ -96,9 +96,9 @@ public class Day6 {
 	  }
 	
 	public static void problemTests() {
-		test(order2("is2 Thi1s T4est 3a"), "Thi1s is2 3a T4est");
-		test(order2("4of Fo1r pe6ople g3ood th5e the2"), "Fo1r the2 g3ood 4of th5e pe6ople");
-		test(order2(""), "");
+		test(order("is2 Thi1s T4est 3a"), "Thi1s is2 3a T4est");
+		test(order("4of Fo1r pe6ople g3ood th5e the2"), "Fo1r the2 g3ood 4of th5e pe6ople");
+		test(order(""), "");
 	}
 	
 	public static boolean test(Object output, Object expect) {
