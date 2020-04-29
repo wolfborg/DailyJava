@@ -26,14 +26,26 @@ public class Day8 {
 	/************************************************************************
 	 * My Solution
 	 * 
-	 * 1. 
+	 * 1. Check for 0, return 0.00 if found
+	 * 2. Loop through the series, with x=4 and num=1
+	 * 3. Each loop decrements n and adds 3 to x
+	 * 4. Loop adds the current x value into the sum
+	 * 5. Returns 2 decimal point string
 	 * 
+	 * I feel like there's definitely a cleaner way to simplify this.
 	 * 
-	 * 
-	 * Time complexity: 
+	 * Time complexity: O(N)
 	 ************************************************************************/
 	public static String solution(int n) {
-		return "";
+		if (n == 0) return "0.00";
+		
+		double num = 1;
+		for (int x=4; n > 1; n--) {
+			num += 1.0/x;
+			x += 3;
+		}
+		
+		return String.format("%.2f", num);
 	}
 	
 	/************************************************************************
@@ -53,6 +65,7 @@ public class Day8 {
 		Test.test(solution(1), "1.00");
 		Test.test(solution(2), "1.25");
 		Test.test(solution(5), "1.57");
+		Test.test(solution(0), "0.00");
 	}
 	
 	
